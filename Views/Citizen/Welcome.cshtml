@@ -1,0 +1,92 @@
+﻿@model Egov.Models.Citizen
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Citizen Application</title>
+    <style>
+        /* Background image for the entire page */
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            background-image: url('images/bank.jpg'); /* Replace with your image URL */
+            background-size: auto;
+            background-position: 103% 25%;
+            background-attachment: fixed; /* Keeps the background fixed while scrolling */
+            height: 100vh; /* Ensures body takes full height */
+            display: block; /* Default display to avoid flexbox on entire body */
+            text-align: center; /* Center text inside container */
+        }
+
+        /* Token ID Box (Top Right Corner) */
+        .token-box {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            padding: 8px 15px;
+            background-color: #f1f1f1;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 20px;
+            font-weight: bold;
+        }
+
+        /* Main Content Container for Button Centering */
+        .content-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column; /* Stack the button vertically */
+        }
+
+        /* Button Styling */
+        .btn-primary {
+            background-color: #3498db;
+            color: white;
+            padding: 15px 30px;
+            font-size: 18px;
+            font-weight: bold;
+            border: none;
+            border-radius: 50px;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+            cursor: pointer;
+            text-decoration: none;
+        }
+
+            .btn-primary:hover {
+                background-color: #2980b9;
+                transform: translateY(-3px); /* Subtle lift effect on hover */
+            }
+
+        /* Optional: For responsiveness */
+        
+            .btn-primary
+
+        {
+            padding: 12px 24px;
+            font-size: 16px;
+        }
+
+        
+    </style>
+</head>
+<body>
+
+    <!-- Token ID Box (Top Right Corner) -->
+    <div class="token-box">
+        Current Token Number: @Model.Id
+    </div>
+
+    <!-- Main content with centered button -->
+    <div class="content-container">
+        <div style="font-size:50px" >Silver and Gold Coin Registration Portal</div>
+        <br /><br /><br /><br /><br /><br /><br />
+        <div style="font-size:36px">Please fill the form below to continue</div>
+        <a href="@Url.Action("Create", "Citizen")" class="btn-primary">Fill Application Form</a>
+    </div>
+
+</body>
+</html>

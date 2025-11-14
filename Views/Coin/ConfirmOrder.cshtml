@@ -1,0 +1,46 @@
+﻿@model ConfirmOrderViewModel
+@{
+    var citizenId = TempData["CitizenId"];
+}
+
+<div class="container">
+    <!-- Token ID Box (Top Right Corner) -->
+    <div style="position: absolute; top: 10px; right: 10px; padding: 8px 15px; background-color: #f1f1f1; border: 1px solid #ccc; border-radius: 5px; font-size: 14px; font-weight: bold;">
+       Your Token Number: @citizenId
+    </div>
+
+    <h3 class="title">Order Confirmation</h3>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Coin Name</th>
+                <th>Quantity</th>
+                <th>Total Price (Rs.)</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var coin in Model.SelectedCoins)
+            {
+                <tr>
+                    <td>@coin.CoinName</td>
+                    <td>@coin.Quantity</td>
+                    <td>@coin.TotalPrice</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+    <div class="total">
+        <h4><strong>Grand Total: Rs. @Model.GrandTotal</strong></h4>
+    </div>
+    <strong>Points to remember:</strong><br />
+    <ul>
+        <li>
+            Please note your token number and bring original citizenship card when arriving to the central office.
+        </li>
+        <li>
+    Reach to the office prior to 10 token numbers.
+        </li>
+    </ul>
+
+</div>

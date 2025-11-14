@@ -1,0 +1,103 @@
+﻿@model Egov.Models.Citizen
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h4 class="text-center text-primary">Nepal Mint Coin Application Form</h4>
+<hr class="border-primary" />
+
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <form asp-action="Create" enctype="multipart/form-data" class="shadow-lg p-4 bg-light rounded">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+                <!-- First Name -->
+                <div class="form-group">
+                    <label asp-for="FirstName" class="control-label"><i class="bi bi-person-fill"></i> First Name</label>
+                    <input asp-for="FirstName" class="form-control" placeholder="Enter your first name" />
+                    <span asp-validation-for="FirstName" class="text-danger"></span>
+                </div>
+
+                <!-- Last Name -->
+                <div class="form-group">
+                    <label asp-for="LastName" class="control-label"><i class="bi bi-person-fill"></i> Last Name</label>
+                    <input asp-for="LastName" class="form-control" placeholder="Enter your last name" />
+                    <span asp-validation-for="LastName" class="text-danger"></span>
+                </div>
+
+                <!-- Middle Name -->
+                <div class="form-group">
+                    <label asp-for="MiddleName" class="control-label"><i class="bi bi-person-fill"></i> Middle Name</label>
+                    <input asp-for="MiddleName" class="form-control" placeholder="Enter your middle name" />
+                    <span asp-validation-for="MiddleName" class="text-danger"></span>
+                </div>
+
+                <!-- Phone -->
+                <div class="form-group">
+                    <label asp-for="Phone" class="control-label"><i class="bi bi-telephone-fill"></i> Phone Number</label>
+                    <input asp-for="Phone" class="form-control" placeholder="Enter your phone number" />
+                    <span asp-validation-for="Phone" class="text-danger"></span>
+                </div>
+
+                <!-- Email -->
+                <div class="form-group">
+                    <label asp-for="Email" class="control-label"><i class="bi bi-envelope-fill"></i> Email</label>
+                    <input asp-for="Email" class="form-control" placeholder="Enter your email address" />
+                    <span asp-validation-for="Email" class="text-danger"></span>
+                </div>
+
+                <!-- Citizenship Number -->
+                <div class="form-group">
+                    <label asp-for="CitizenshipNo" class="control-label"><i class="bi bi-card-checklist"></i> Citizenship Number</label>
+                    <input asp-for="CitizenshipNo" class="form-control" placeholder="Enter your citizenship number" />
+                    <span asp-validation-for="CitizenshipNo" class="text-danger"></span>
+                </div>
+
+                <!-- File Input for Front Image -->
+                <div class="form-group">
+                    <label asp-for="CitizenF" class="control-label"><i class="bi bi-file-earmark-image"></i>Citizenship Front Image</label>
+                    <input type="file" asp-for="CitizenF" class="form-control" id="citizenF" onchange="previewImage('citizenF', 'frontImagePreview')" />
+                    <span asp-validation-for="CitizenF" class="text-danger"></span>
+                    <br />
+                    <img id="frontImagePreview" src="" alt="Front Image Preview" style="display:none; width: 100%; max-width: 300px; margin-top: 10px;" />
+                </div>
+
+                <!-- File Input for Back Image -->
+                <div class="form-group">
+                    <label asp-for="CitizenB" class="control-label"><i class="bi bi-file-earmark-image"></i> Citizenship Back Image</label>
+                    <input type="file" asp-for="CitizenB" class="form-control" id="citizenB" onchange="previewImage('citizenB', 'backImagePreview')" />
+                    <span asp-validation-for="CitizenB" class="text-danger"></span>
+                    <br />
+                    <img id="backImagePreview" src="" alt="Back Image Preview" style="display:none; width: 100%; max-width: 300px; margin-top: 10px;" />
+                </div>
+
+                <!-- Submit Button -->
+                <div class="form-group text-center">
+                    <input type="submit" value="Submit" class="btn btn-primary btn-lg" />
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        // Function to preview images
+        function previewImage(inputId, previewId) {
+            var file = document.getElementById(inputId).files[0];
+            var reader = new FileReader();
+
+            reader.onload = function(e) {
+                var preview = document.getElementById(previewId);
+                preview.src = e.target.result;
+                preview.style.display = 'block'; // Show the image preview
+            }
+
+            if (file) {
+                reader.readAsDataURL(file);
+            }
+        }
+    </script>
+}

@@ -1,0 +1,48 @@
+﻿@model IEnumerable<Egov.Models.Coin>
+
+@{
+    ViewData["Title"] = "Coin Dashboard";
+}
+<div class="container">
+    <h3 class="title">Limited Purchase Offer: 5 Silver Coins per Type & 1 Gold Coin</h3>
+    <form asp-action="ConfirmOrder" method="post">
+        <div class="row">
+            @foreach (var item in Model)
+            {
+                <div class="col-md-4 col-sm-6">
+                    <div class="coin-card">
+                        <img src="/ProductImages/@item.Producticon" class="coin-image" onclick="openImageInWindow(this.src)" />
+                        <div class="coin-details">
+                            <h4 class="coin-name">@Html.DisplayFor(modelItem => item.Title)</h4>
+                            <p><strong>Price:</strong> Rs. @Html.DisplayFor(modelItem => item.Price)</p>
+                            <p><strong>Weight:</strong> @Html.DisplayFor(modelItem => item.Weight) g</p>
+                            <div class="quantity-section">
+                                <label for="quantity@item.Id">Quantity:</label>
+                                <select id="quantity@item.Id" name="quantities[@item.Id]" class="quantity-select">
+                                    @if (item.Title == "Gold")  // Check if the coin is "Gold"
+                                    {
+                                        <option value="0" selected>0</option>
+                                        <option value="1">1</option>  <!-- Only option for Gold coin -->
+                                    }
+                                    else
+                                    {
+                                        <option value="0">0</option>
+                                        <option value="1">1</option>
+                                        <option value="2">2</option>
+                                        <option value="3">3</option>
+                                        <option value="4">4</option>
+                                        <option value="5">5</option>
+                                    }
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+        <div class="form-group">
+            <button type="submit" class="btn btn-success">Confirm</button>
+        </div>
+        <br />
+    </form>
+</div>
